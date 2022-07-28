@@ -322,15 +322,18 @@ namespace Starter
             var pt2 = new { P1 = 3, P2 = 44, P3 = 88 };
             var pt3 = new { P1 = 33, P2 = 434, P3 = 88 };
 
+            int w = pt1.P1;  //get
+           // pt1.P1 = 999;    //set
+
             this.listBox1.Items.Add(pt1.GetType());
             this.listBox1.Items.Add(pt2.GetType());
             this.listBox1.Items.Add(pt3.GetType());
 
             int[] nums = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-
+          
             //var  q = from n in nums
             //                where n > 5
-            //                select new { N = n, Square = n * n, Cube = n * n * n };
+            //                select new  { N = n, Square = n * n, Cube = n * n * n };
 
             var q = nums.Where(n => n > 5).Select(n => new { N = n, Square = n * n, Cube = n * n * n });
 
@@ -340,19 +343,86 @@ namespace Starter
 
             //var q2 = from p in this.nwDataSet1.Products
             //         where p.UnitPrice > 30
-            //         select new 
+            //         select new
             //         {
             //             ID = p.ProductID,
             //             產品名稱 = p.ProductName,
             //             p.UnitPrice,
             //             p.UnitsInStock,
-            //             TotalPrice = p.UnitPrice * p.UnitsInStock
+            //             TotalPrice = p.UnitPrice * p.UnitsInStock,
+            //             Data = M1(,,,,,,,)
             //         };
 
-            var q2 = this.nwDataSet1.Products.Where(p => p.UnitPrice > 30).Select(p => new { p.ProductID, p.ProductName, p.UnitPrice, p.UnitsInStock,  TotalPrice= p.UnitPrice * p.UnitsInStock });
+            //格式化
+            MessageBox.Show($"{7777:c2}   ***{333,-30}***");   //string.format(....
+
+            var q2 = this.nwDataSet1.Products.Where(p => p.UnitPrice > 30).Select(p => new { p.ProductID, p.ProductName, p.UnitPrice, p.UnitsInStock,  TotalPrice= $"{p.UnitPrice * p.UnitsInStock:c2}"  });
            this.dataGridView2.DataSource =  q2.ToList();
         }
+
+        private void button40_Click(object sender, EventArgs e)
+        {
+            //具名型別陣列
+            Point[] pts = new Point[]
+                                {
+                                 new Point(10,10),
+                                 new Point(20, 20)
+                                };
+
+            //匿名型別陣列
+            var arr = new []
+                             {
+                                new { x = 1, y = 1 },
+                                new { x = 2, y = 2 }
+                             };
+
+
+            foreach (var item in arr)
+            {
+                listBox1.Items.Add(item.x + ", " + item.y);
+
+            }
+            this.dataGridView1.DataSource = arr;
+        }
+
+        private void button32_Click(object sender, EventArgs e)
+        {
+            string s = "abcdlklklklklklk";
+            int count = s.WordCount();
+            MessageBox.Show("count = " + count);
+
+            string s1 = "123456789";
+            count = s1.WordCount();   // count = MyStringExtend.WordCount(s1);
+           
+            MessageBox.Show("count = " + count);
+
+            //===================
+            char ch = s1.Chars(3);
+            MessageBox.Show("ch=" + ch);
+
+        }
     }
+
+   public static class  MyStringExtend
+    {
+       public static int WordCount(this string s )
+        {
+            return s.Length;
+        }
+
+        public static char Chars(this string s, int index)
+        {
+            return s[index];
+        }
+
+    }
+//    嚴重性 程式碼 說明 專案  檔案 行   隱藏項目狀態
+//錯誤  CS0509	'MyString': 無法衍生自密封類型 'string'	LinqLabs C:\shared\LINQ\LinqLabs(Solution)\LinqLabs\2. FrmLangForLINQ.cs	395	作用中
+
+//    class MyString :String
+//    {
+        
+//    }
 
     class MyPoint
     {

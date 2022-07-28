@@ -249,6 +249,7 @@
             this.button40.TabIndex = 43;
             this.button40.Text = "隱含匿名型別陣列";
             this.button40.UseVisualStyleBackColor = false;
+            this.button40.Click += new System.EventHandler(this.button40_Click);
             // 
             // button3
             // 
@@ -310,6 +311,7 @@
             this.button32.TabIndex = 20;
             this.button32.Text = "擴充方法";
             this.button32.UseVisualStyleBackColor = true;
+            this.button32.Click += new System.EventHandler(this.button32_Click);
             // 
             // groupBox1
             // 
