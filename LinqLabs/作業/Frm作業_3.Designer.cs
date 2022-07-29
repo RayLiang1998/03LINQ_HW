@@ -80,7 +80,7 @@ namespace LinqLabs.作業
             // 
             // button33
             // 
-            this.button33.Location = new System.Drawing.Point(25, 312);
+            this.button33.Location = new System.Drawing.Point(13, 306);
             this.button33.Margin = new System.Windows.Forms.Padding(4);
             this.button33.Name = "button33";
             this.button33.Size = new System.Drawing.Size(375, 75);

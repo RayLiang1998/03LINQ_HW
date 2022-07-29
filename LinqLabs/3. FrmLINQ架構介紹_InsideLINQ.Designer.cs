@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.button54 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -58,7 +59,6 @@
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.productsTableAdapter1 = new LinqLabs.NWDataSetTableAdapters.ProductsTableAdapter();
             this.nwDataSet1 = new LinqLabs.NWDataSet();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox7.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -103,6 +103,16 @@
             this.groupBox7.TabIndex = 28;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Step 3. 執行 Query 查詢";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(320, 137);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(206, 51);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "Aggregation";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label8
             // 
@@ -484,16 +494,6 @@
             // 
             this.nwDataSet1.DataSetName = "NWDataSet";
             this.nwDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(302, 137);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(206, 51);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "Aggregation";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FrmLINQ架構介紹_InsideLINQ
             // 
