@@ -178,5 +178,10 @@ namespace Starter
 
             this.Read_RefreshDataGridView();
         }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LinqLabs;
 
 namespace MyHomeWork
 {
@@ -15,6 +16,9 @@ namespace MyHomeWork
         public Frm作業_1()
         {
             InitializeComponent();
+            //this.ordersTableAdapter1.Fill(this.nwDataSet1.Orders);
+            //this.productsTableAdapter1.Fill(this.nwDataSet1.Products);
+            dbContext.Database.Log = Console.WriteLine;
 
             students_scores = new List<Student>()
                                          {
@@ -27,7 +31,7 @@ namespace MyHomeWork
 
                                           };
         }
-
+        NorthwindEntities dbContext = new NorthwindEntities();
         List<Student> students_scores;
 
         public class Student
@@ -45,11 +49,33 @@ namespace MyHomeWork
 
         }
 
+        int i;
+        int T;
+        int B;
         private void button13_Click(object sender, EventArgs e)
         {
-            //this.nwDataSet1.Products.Take(10);//Top 10 Skip(10)
-
-            //Distinct()
+            
+            B = T;
+            i = Convert.ToInt32(textBox1.Text);
+            if (T > this.dbContext.Products.Count() - i)
+            {
+                //return;
+            }
+            var q = this.dbContext.Products.AsEnumerable().Skip(B).Take(i);
+            this.dataGridView1.DataSource = q.ToList();
+            T = B + i;
+        }
+        private void button12_Click(object sender, EventArgs e)
+        {
+            i = Convert.ToInt32(textBox1.Text);
+            B -= i;
+            if (B <0)
+            {
+                return;
+            }
+            var q = this.dbContext.Products.AsEnumerable().Skip(B).Take(i);
+            this.dataGridView1.DataSource = q.ToList();
+            T = B + i;
         }
 
         private void button14_Click(object sender, EventArgs e)
@@ -58,7 +84,11 @@ namespace MyHomeWork
 
             System.IO.FileInfo[] files =  dir.GetFiles();
 
-            this.dataGridView1.DataSource = files;
+            var q = from f in files
+                    where f.Extension == ".log"
+                    select f;
+
+            this.dataGridView1.DataSource = q.ToList();
         }
 
         private void button36_Click(object sender, EventArgs e)
@@ -77,10 +107,13 @@ namespace MyHomeWork
 
             // 找出除了 'bbb' 學員的學員的所有成績 ('bbb' 退學)	
 
-        		
+
             // 數學不及格 ... 是誰 
             #endregion
-
+            var q = from s in students_scores
+                    where s.Class == "CS_101"
+                    select s;
+            this.dataGridView1.DataSource = q.ToList();
         }
 
         private void button37_Click(object sender, EventArgs e)
@@ -90,7 +123,107 @@ namespace MyHomeWork
 
             //個人 所有科的  sum, min, max, avg
 
+            var q2 = from s in students_scores
+                    select new { s.Name, s.Chi, s.Eng, s.Math, sum = s.Chi + s.Eng + s.Math, avg = (s.Chi + s.Eng + s.Math) / 3 };
+            this.dataGridView1.DataSource = q2.ToList();
 
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            var q = from p in this.dbContext.Orders.AsEnumerable()
+                    select p;
+
+            this.dataGridView1.DataSource = q.ToList();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var q = from p in this.dbContext.Orders.AsEnumerable()
+                    where p.OrderDate.Value.Year == Convert.ToInt32(comboBox1.Text) 
+                    select p;
+
+            this.dataGridView2.DataSource = q.ToList();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(@"c:\windows");
+
+            System.IO.FileInfo[] files = dir.GetFiles();
+            var q = from f in files
+                    where f.CreationTime.Year == 2019
+                    select f;
+
+            this.dataGridView1.DataSource = q.ToList();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(@"c:\windows");
+
+            System.IO.FileInfo[] files = dir.GetFiles();
+            var q = from f in files
+                    where f.Length > 100000
+                    orderby f.Length descending
+                    select f;
+
+            this.dataGridView1.DataSource = q.ToList();
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            var q = from s in students_scores
+                    where s.Name == "aaa" || s.Name == "bbb" || s.Name == "ccc"
+                    select new { s.Name, s.Chi, s.Math };
+            this.dataGridView1.DataSource = q.ToList();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var q = (from s in students_scores
+                    select s).Take(3);
+            this.dataGridView1.DataSource = q.ToList();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            var q = (from s in students_scores
+                     select s).Skip(students_scores.Count() - 2);
+            this.dataGridView1.DataSource = q.ToList();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            var q = from s in students_scores
+                    where s.Math < 60
+                     select s;
+            this.dataGridView1.DataSource = q.ToList();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var q = (from s in students_scores
+                    select new { total_count = students_scores.Count()}).Take(1);
+            this.dataGridView1.DataSource = q.ToList();
+
+            MessageBox.Show("Total count: " + students_scores.Count().ToString());
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            var q = from s in students_scores
+                    where s.Name == "bbb"
+                    select s;
+            this.dataGridView1.DataSource = q.ToList();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            var q = from s in students_scores
+                    where s.Name != "bbb"
+                    select s;
+            this.dataGridView1.DataSource = q.ToList();
         }
     }
 }

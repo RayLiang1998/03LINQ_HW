@@ -75,7 +75,7 @@ namespace LinqLabs.作業
             this.label3.Location = new System.Drawing.Point(11, 323);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(215, 22);
+            this.label3.Size = new System.Drawing.Size(163, 15);
             this.label3.TabIndex = 134;
             this.label3.Text = "LINQ to Northwind Entity";
             // 
@@ -96,7 +96,7 @@ namespace LinqLabs.作業
             this.label4.Location = new System.Drawing.Point(5, 27);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(145, 22);
+            this.label4.Size = new System.Drawing.Size(106, 15);
             this.label4.TabIndex = 126;
             this.label4.Text = "LINQ - GroupBy";
             // 
@@ -151,7 +151,7 @@ namespace LinqLabs.作業
             this.label1.Location = new System.Drawing.Point(12, 151);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(152, 22);
+            this.label1.Size = new System.Drawing.Size(115, 15);
             this.label1.TabIndex = 128;
             this.label1.Text = "LINQ to FileInfo[]";
             // 
@@ -166,6 +166,7 @@ namespace LinqLabs.作業
             this.button6.TabIndex = 93;
             this.button6.Text = "  依 年 分組檔案 (大=>小)";
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button8
             // 
@@ -190,6 +191,7 @@ namespace LinqLabs.作業
             this.button38.TabIndex = 95;
             this.button38.Text = "依 檔案大小 分組檔案 (大=>小)";
             this.button38.UseVisualStyleBackColor = false;
+            this.button38.Click += new System.EventHandler(this.button38_Click);
             // 
             // button1
             // 
@@ -417,11 +419,11 @@ namespace LinqLabs.作業
             // 
             // Frm作業_4
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1706, 890);
             this.Controls.Add(this.tableLayoutPanel3);
-            this.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Frm作業_4";
             this.Text = "Frm作業_4";
