@@ -24,7 +24,7 @@ namespace LinqLabs.作業
             else if (n == 2020)
                 return "Year2020";
             else
-                return "Large";
+                return "2021";
         }
         private void button38_Click(object sender, EventArgs e)
         {
